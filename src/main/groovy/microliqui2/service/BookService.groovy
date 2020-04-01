@@ -5,6 +5,8 @@ import groovy.util.logging.Slf4j
 import microliqui2.domain.Book
 import org.grails.datastore.mapping.validation.ValidationException
 
+import javax.inject.Singleton
+
 @Slf4j
 @Singleton
 @Transactional
