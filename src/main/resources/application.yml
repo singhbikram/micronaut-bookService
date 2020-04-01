@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: microliqui2
+
+---
+dataSource:
+  pooled: true
+  jmxExport: true
+  dbCreate: create
+  url: jdbc:postgresql://localhost:5432/bookdb
+  username: postgres
+  password: admin
+  driverClassName: org.postgresql.Driver
+jpa:
+  default:
+    packages-to-scan:
+      - microliqui2.domain
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true

@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: microliqui2
+---
+testFramework: spock
+sourceLanguage: groovy
