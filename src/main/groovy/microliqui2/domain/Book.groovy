@@ -2,7 +2,7 @@ package microliqui2.domain
 
 import grails.gorm.annotation.Entity
 
-@Entity
+//@Entity
 class Book {
 
     String bookId

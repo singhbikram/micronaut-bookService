@@ -24,7 +24,11 @@ dependencies {
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     compileOnly platform("io.micronaut:micronaut-bom:$micronautVersion")
     compileOnly "io.micronaut:micronaut-inject-groovy"
+    compileOnly "io.micronaut.data:micronaut-data-processor:$micronautDataVersion"
+    implementation "io.micronaut.data:micronaut-data-jdbc:$micronautDataVersion"
+
     implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
+    compileOnly 'jakarta.persistence:jakarta.persistence-api:2.2.2'
 
     compile "io.micronaut:micronaut-inject:1.3.3"
 
@@ -45,6 +49,8 @@ dependencies {
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4.1212'
 
     compile 'io.micronaut.configuration:micronaut-liquibase'
+    implementation 'io.micronaut.configuration:micronaut-liquibase'
+    implementation 'org.liquibase:liquibase-groovy-dsl:2.0.3'
 
     runtimeOnly "com.h2database:h2"
     runtimeOnly "org.apache.tomcat:tomcat-jdbc"
