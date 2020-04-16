@@ -1,5 +1,6 @@
 package microliqui2.controller
 
+import groovy.cli.Option
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import io.micronaut.http.HttpStatus
@@ -11,6 +12,7 @@ import io.reactivex.Single
 import microliqui2.domain.Book
 import microliqui2.service.BookService
 
+import javax.annotation.Nullable
 import javax.inject.Inject
 import javax.validation.ValidationException
 
@@ -30,21 +32,21 @@ class BookController {
     @Post('/')
     Single<Map> create(@Body Map data)
     {
-        //log.info(data)
-        try {
-            log.info (">>>> save book request received. Updating  data = {}",  data)
-            Book book = bookService.create(data)
-            log.info ">>>> save book request is being processed ..."
-        } catch (ValidationException ve) {
-            log.error "create book: ${ve.message}"
-        } catch (URISyntaxException e) {
-            log.error "create book: ${e.reason}"
-        }
-    }
+        log.info (">>>> save book request received. Updating  data = {}",  data)
+        Book book = bookService.create(data)
+        log.info ">>>> save book request is being processed ..."
+        success(data)
 //
-//    @Get('/getBooks')
-//    Single<Map> get() {
-//        log.info("Fetching books...", bookService.get())
-//        bookService.get() as Single<Map>
-//    }
+    }
+    Single<Map> success(Object result=null) {
+        Single.just((Map)[success: true, result: result])
+    }
+
+    @Get('/getBooks')
+     Single<Map> get() {
+        log.info("Fetching books...{}", bookService.get())
+        success(bookService.get())
+    }
+
+
 }
